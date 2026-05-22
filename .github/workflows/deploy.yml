@@ -1,0 +1,79 @@
+name: Build and Deploy Full Site
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [trigger-deploy]
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout main repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.MY_PAT }}
+          submodules: false
+
+      - name: Configure git to use PAT for all GitHub HTTPS requests
+        run: git config --global url."https://${{ secrets.MY_PAT }}@github.com/".insteadOf "https://github.com/"
+
+      # 更新子模块 Tangent-page（最新提交）
+      - name: Update submodule (Tangent-page)
+        run: |
+          git submodule sync --recursive
+          git submodule update --init --recursive --remote
+
+      # 检出 Tangent-nav（只读，无需构建）
+      - name: Checkout Tangent-nav
+        uses: actions/checkout@v4
+        with:
+          repository: SixingWang2025/Tangent-nav
+          path: repo-a
+          token: ${{ secrets.MY_PAT }}
+
+      # 直接复制 Tangent-nav 的 public 目录到 /nav
+      - name: Copy Tangent-nav public to /nav
+        run: |
+          mkdir -p nav
+          cp -r repo-a/public/* nav/
+
+      # 检出 Tangent-blog
+      - name: Checkout Tangent-blog
+        uses: actions/checkout@v4
+        with:
+          repository: SixingWang2025/Tangent-blog
+          path: repo-b
+          token: ${{ secrets.MY_PAT }}
+
+      # 直接复制 Tangent-blog 的 public 目录到 /blog
+      - name: Copy Tangent-blog public to /blog
+        run: |
+          mkdir -p blog
+          cp -r repo-b/public/* blog/
+
+      # 防止 Jekyll 处理
+      - name: Prevent Jekyll processing
+        run: touch .nojekyll
+
+      # 上传完整内容（包括根目录的 index.html、404.html、nav/、blog/、page/）
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
