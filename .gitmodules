@@ -1,8 +1,0 @@
-[submodule "nav"]
-	path = nav
-	url = https://github.com/SixingWang2025/Tangent-nav.git
-	branch = gh-pages
-[submodule "blog"]
-	path = blog
-	url = https://github.com/SixingWang2025/Tangent-blog.git
-	branch = gh-pages

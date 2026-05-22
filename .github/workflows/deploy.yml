@@ -25,50 +25,55 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.MY_PAT }}
-          submodules: false
 
-      - name: Configure git to use PAT for all GitHub HTTPS requests
-        run: git config --global url."https://${{ secrets.MY_PAT }}@github.com/".insteadOf "https://github.com/"
-
-      # 更新子模块 Tangent-page（最新提交）
-      - name: Update submodule (Tangent-page)
-        run: |
-          git submodule sync --recursive
-          git submodule update --init --recursive --remote
-
-      # 检出 Tangent-nav（只读，无需构建）
-      - name: Checkout Tangent-nav
+      - name: Checkout Tangent-nav (gh-pages)
         uses: actions/checkout@v4
         with:
           repository: SixingWang2025/Tangent-nav
-          path: repo-a
+          ref: gh-pages
+          path: _tmp_nav
           token: ${{ secrets.MY_PAT }}
 
-      # 直接复制 Tangent-nav 的 public 目录到 /nav
-      - name: Copy Tangent-nav public to /nav
+      - name: Copy Tangent-nav to /nav
         run: |
+          rm -rf nav
           mkdir -p nav
-          cp -r repo-a/public/* nav/
+          cp -r _tmp_nav/* nav/
+          rm -rf _tmp_nav
 
-      # 检出 Tangent-blog
-      - name: Checkout Tangent-blog
+      - name: Checkout Tangent-blog (gh-pages)
         uses: actions/checkout@v4
         with:
           repository: SixingWang2025/Tangent-blog
-          path: repo-b
+          ref: gh-pages
+          path: _tmp_blog
           token: ${{ secrets.MY_PAT }}
 
-      # 直接复制 Tangent-blog 的 public 目录到 /blog
-      - name: Copy Tangent-blog public to /blog
+      - name: Copy Tangent-blog to /blog
         run: |
+          rm -rf blog
           mkdir -p blog
-          cp -r repo-b/public/* blog/
+          cp -r _tmp_blog/* blog/
+          rm -rf _tmp_blog
 
-      # 防止 Jekyll 处理
+      - name: Checkout Tangent-page (gh-pages)
+        uses: actions/checkout@v4
+        with:
+          repository: SixingWang2025/Tangent-page
+          ref: gh-pages
+          path: _tmp_page
+          token: ${{ secrets.MY_PAT }}
+
+      - name: Copy Tangent-page to /page
+        run: |
+          rm -rf page
+          mkdir -p page
+          cp -r _tmp_page/* page/
+          rm -rf _tmp_page
+
       - name: Prevent Jekyll processing
         run: touch .nojekyll
 
-      # 上传完整内容（包括根目录的 index.html、404.html、nav/、blog/、page/）
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
