@@ -217,17 +217,16 @@
         let meteors = [];
         function spawn() {
             meteors.push({
-                x: Math.random() * w * 0.7,
-                y: -80,
-                vx: 4 + Math.random() * 5,
-                vy: 2.5 + Math.random() * 3.5,
+                x: Math.random() * w * 0.6,
+                y: -100,
+                vx: 2 + Math.random() * 3,
+                vy: 1.5 + Math.random() * 2,
                 life: 1,
-                decay: 0.01 + Math.random() * 0.015,
-                len: 100 + Math.random() * 120,
+                decay: 0.008 + Math.random() * 0.01,
+                len: 80 + Math.random() * 100,
             });
         }
-        setInterval(() => { if (Math.random() < 0.5) spawn(); }, 2200);
-        spawn();
+        setInterval(() => { if (Math.random() < 0.35) spawn(); }, 3000);
         spawn();
 
         window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
@@ -280,25 +279,19 @@
                 ctx.beginPath();
                 ctx.moveTo(m.x, m.y);
                 ctx.lineTo(ex, ey);
-                ctx.strokeStyle = `rgba(180,210,255,${(m.life * 0.3).toFixed(2)})`;
-                ctx.lineWidth = 4;
+                ctx.strokeStyle = `rgba(150,180,220,${(m.life * 0.18).toFixed(2)})`;
+                ctx.lineWidth = 3;
                 ctx.stroke();
                 // core
                 const g = ctx.createLinearGradient(m.x, m.y, ex, ey);
-                g.addColorStop(0, `rgba(255,255,255,${m.life})`);
-                g.addColorStop(0.3, `rgba(220,230,255,${(m.life * 0.8).toFixed(2)})`);
+                g.addColorStop(0, `rgba(230,240,255,${(m.life * 0.7).toFixed(2)})`);
                 g.addColorStop(1, 'rgba(255,255,255,0)');
                 ctx.beginPath();
                 ctx.moveTo(m.x, m.y);
                 ctx.lineTo(ex, ey);
                 ctx.strokeStyle = g;
-                ctx.lineWidth = 2;
+                ctx.lineWidth = 1.2;
                 ctx.stroke();
-                // head dot
-                ctx.beginPath();
-                ctx.arc(m.x, m.y, 1.5, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(255,255,255,${m.life})`;
-                ctx.fill();
             }
 
             requestAnimationFrame(draw);
