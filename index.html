@@ -32,20 +32,21 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            padding: 40px 20px;
+            padding: 20px 20px 40px;
             text-align: center;
+            transform: translateY(-6vh);
         }
 
         .avatar {
-            width: 100px;
-            height: 100px;
+            width: 88px;
+            height: 88px;
             border-radius: 50%;
             border: 2px solid rgba(255,255,255,0.2);
-            margin-bottom: 28px;
-            background-image: url('https://sixingwang2025.github.io/page/static/images/fbg.jpg');
+            margin-bottom: 24px;
+            background-image: url('https://sixingwang2025.github.io/page/static/images/favicon.jpg');
             background-size: cover;
             background-position: center;
-            box-shadow: 0 0 40px rgba(140,160,255,0.15);
+            box-shadow: 0 0 32px rgba(140,160,255,0.12);
         }
 
         .typewriter-wrap {
@@ -53,7 +54,7 @@
             font-weight: 300;
             letter-spacing: 4px;
             color: #d4dfff;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             min-height: 1.3em;
         }
         .cursor {
@@ -68,10 +69,10 @@
         @keyframes blink { 50% { opacity: 0; } }
 
         .subtitle {
-            font-size: 15px;
-            color: rgba(255,255,255,0.35);
+            font-size: 14px;
+            color: rgba(255,255,255,0.3);
             letter-spacing: 5px;
-            margin-bottom: 52px;
+            margin-bottom: 44px;
         }
 
         .nav-links {
@@ -79,10 +80,10 @@
             flex-direction: row;
             gap: 1px;
             width: 100%;
-            max-width: 660px;
+            max-width: 720px;
             border-radius: 12px;
             overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.07);
         }
 
         .nav-link {
@@ -90,45 +91,53 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 14px;
-            padding: 20px 24px;
+            gap: 16px;
+            padding: 26px 28px;
             text-decoration: none;
             color: #c8d6ff;
-            background: rgba(255,255,255,0.03);
+            background: rgba(255,255,255,0.025);
             transition: all 0.3s ease;
             cursor: pointer;
         }
         .nav-link:hover {
-            background: rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.07);
         }
         .nav-link + .nav-link {
-            border-left: 1px solid rgba(255,255,255,0.06);
+            border-left: 1px solid rgba(255,255,255,0.05);
         }
 
-        .nav-link .icon { font-size: 28px; line-height: 1; flex-shrink: 0; }
+        .nav-link svg {
+            flex-shrink: 0;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+        .nav-link:hover svg { opacity: 1; }
+
         .nav-link .text { text-align: left; line-height: 1.4; }
-        .nav-link .title { font-size: 17px; font-weight: 500; letter-spacing: 2px; }
-        .nav-link .desc { font-size: 12px; color: rgba(255,255,255,0.3); margin-top: 2px; }
+        .nav-link .title { font-size: 19px; font-weight: 500; letter-spacing: 2px; }
+        .nav-link .desc { font-size: 13px; color: rgba(255,255,255,0.28); margin-top: 3px; }
 
         .footer {
-            margin-top: 48px;
+            margin-top: 40px;
             font-size: 13px;
-            color: rgba(255,255,255,0.25);
+            color: rgba(255,255,255,0.22);
         }
-        .footer a { color: rgba(255,255,255,0.35); text-decoration: none; transition: color .2s; }
-        .footer a:hover { color: rgba(255,255,255,0.7); }
+        .footer a { color: rgba(255,255,255,0.32); text-decoration: none; transition: color .2s; }
+        .footer a:hover { color: rgba(255,255,255,0.65); }
 
         @media (max-width: 560px) {
+            .overlay { transform: translateY(-4vh); }
             .nav-links {
                 flex-direction: column;
                 border-radius: 10px;
+                max-width: 100%;
             }
             .nav-link + .nav-link {
                 border-left: none;
-                border-top: 1px solid rgba(255,255,255,0.06);
+                border-top: 1px solid rgba(255,255,255,0.05);
             }
             .nav-link {
-                padding: 16px 20px;
+                padding: 18px 20px;
                 justify-content: flex-start;
             }
         }
@@ -144,21 +153,30 @@
 
         <div class="nav-links">
             <a class="nav-link" href="/nav/">
-                <span class="icon">🧭</span>
+                <!-- compass / navigation -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+                </svg>
                 <span class="text">
                     <div class="title">导航</div>
                     <div class="desc">常用工具与资源收藏</div>
                 </span>
             </a>
             <a class="nav-link" href="/blog/">
-                <span class="icon">📝</span>
+                <!-- book / article -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                </svg>
                 <span class="text">
                     <div class="title">博客</div>
                     <div class="desc">记录技术与生活思考</div>
                 </span>
             </a>
             <a class="nav-link" href="/page/">
-                <span class="icon">🙋</span>
+                <!-- user / about -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 1 0-16 0"/>
+                </svg>
                 <span class="text">
                     <div class="title">关于</div>
                     <div class="desc">了解更多关于我</div>
@@ -174,12 +192,10 @@
     </div>
 
     <script>
-    /* === 星空 + 流星 + 鼠标连线 === */
     (function() {
         const canvas = document.getElementById('stars');
         const ctx = canvas.getContext('2d');
         let w, h, stars = [], mouse = { x: -999, y: -999 };
-        const STAR_COUNT = 120;
 
         function resize() {
             w = canvas.width = window.innerWidth;
@@ -188,21 +204,21 @@
         window.addEventListener('resize', resize);
         resize();
 
-        for (let i = 0; i < STAR_COUNT; i++) {
+        for (let i = 0; i < 120; i++) {
             stars.push({
                 x: Math.random() * w,
                 y: Math.random() * h,
-                r: Math.random() * 1.4 + 0.5,
+                r: Math.random() * 1.2 + 0.4,
                 twinkle: Math.random() * Math.PI * 2,
-                twinkleSpeed: Math.random() * 0.02 + 0.005,
+                ts: Math.random() * 0.02 + 0.005,
             });
         }
 
         let meteors = [];
-        function spawnMeteor() {
+        function spawn() {
             meteors.push({
                 x: Math.random() * w * 0.8,
-                y: Math.random() * -100 - 50,
+                y: -60,
                 vx: 3 + Math.random() * 4,
                 vy: 2 + Math.random() * 3,
                 life: 1,
@@ -210,8 +226,8 @@
                 len: 60 + Math.random() * 80,
             });
         }
-        setInterval(() => { if (Math.random() < 0.5) spawnMeteor(); }, 2500);
-        spawnMeteor();
+        setInterval(() => { if (Math.random() < 0.4) spawn(); }, 2800);
+        spawn();
 
         window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
         window.addEventListener('mouseleave', () => { mouse.x = -999; mouse.y = -999; });
@@ -220,37 +236,35 @@
             ctx.clearRect(0, 0, w, h);
 
             for (const s of stars) {
-                s.twinkle += s.twinkleSpeed;
-                const alpha = 0.35 + 0.65 * Math.abs(Math.sin(s.twinkle));
+                s.twinkle += s.ts;
+                const a = 0.3 + 0.7 * Math.abs(Math.sin(s.twinkle));
                 ctx.beginPath();
                 ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(190,210,255,${alpha.toFixed(2)})`;
+                ctx.fillStyle = `rgba(190,210,255,${a.toFixed(2)})`;
                 ctx.fill();
             }
 
-            // 鼠标连线 — 更明显的颜色和宽度
             for (const s of stars) {
                 const dx = s.x - mouse.x, dy = s.y - mouse.y;
                 const dist = Math.sqrt(dx * dx + dy * dy);
                 if (dist < 140) {
-                    const strength = (1 - dist / 140);
+                    const p = 1 - dist / 140;
                     ctx.beginPath();
                     ctx.moveTo(mouse.x, mouse.y);
                     ctx.lineTo(s.x, s.y);
-                    ctx.strokeStyle = `rgba(160,200,255,${(strength * 0.6).toFixed(2)})`;
-                    ctx.lineWidth = 1;
+                    ctx.strokeStyle = `rgba(160,200,255,${(p * 0.55).toFixed(2)})`;
+                    ctx.lineWidth = 0.8;
                     ctx.stroke();
                 }
             }
 
-            // 鼠标光标发光点
             if (mouse.x > 0) {
-                const glow = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 20);
-                glow.addColorStop(0, 'rgba(180,210,255,0.3)');
-                glow.addColorStop(1, 'rgba(180,210,255,0)');
+                const g = ctx.createRadialGradient(mouse.x, mouse.y, 2, mouse.x, mouse.y, 10);
+                g.addColorStop(0, 'rgba(180,210,255,0.25)');
+                g.addColorStop(1, 'rgba(180,210,255,0)');
                 ctx.beginPath();
-                ctx.arc(mouse.x, mouse.y, 20, 0, Math.PI * 2);
-                ctx.fillStyle = glow;
+                ctx.arc(mouse.x, mouse.y, 10, 0, Math.PI * 2);
+                ctx.fillStyle = g;
                 ctx.fill();
             }
 
@@ -259,37 +273,35 @@
                 m.x += m.vx; m.y += m.vy;
                 m.life -= m.decay;
                 if (m.life <= 0) { meteors.splice(i, 1); continue; }
-                const grad = ctx.createLinearGradient(m.x, m.y, m.x - m.vx * m.len / 5, m.y - m.vy * m.len / 5);
-                grad.addColorStop(0, `rgba(255,255,255,${m.life})`);
-                grad.addColorStop(1, 'rgba(255,255,255,0)');
+                const g = ctx.createLinearGradient(m.x, m.y, m.x - m.vx * m.len / 5, m.y - m.vy * m.len / 5);
+                g.addColorStop(0, `rgba(255,255,255,${m.life})`);
+                g.addColorStop(1, 'rgba(255,255,255,0)');
                 ctx.beginPath();
                 ctx.moveTo(m.x, m.y);
                 ctx.lineTo(m.x - m.vx * m.len / 5, m.y - m.vy * m.len / 5);
-                ctx.strokeStyle = grad;
+                ctx.strokeStyle = g;
                 ctx.lineWidth = 1.2;
                 ctx.stroke();
             }
 
             requestAnimationFrame(draw);
         }
-
         draw();
 
-        // 打字机
         const el = document.getElementById('typewriter');
         const text = 'Tangent';
-        let index = 0, forward = true;
+        let i = 0, fwd = true;
         function type() {
-            if (forward) {
-                el.textContent = text.slice(0, index + 1);
-                index++;
-                if (index === text.length) { forward = false; setTimeout(type, 2200); return; }
+            if (fwd) {
+                el.textContent = text.slice(0, i + 1);
+                i++;
+                if (i === text.length) { fwd = false; setTimeout(type, 2200); return; }
             } else {
-                el.textContent = text.slice(0, index - 1);
-                index--;
-                if (index === 0) { forward = true; setTimeout(type, 700); return; }
+                el.textContent = text.slice(0, i - 1);
+                i--;
+                if (i === 0) { fwd = true; setTimeout(type, 700); return; }
             }
-            setTimeout(type, forward ? 110 + Math.random() * 90 : 50 + Math.random() * 35);
+            setTimeout(type, fwd ? 100 + Math.random() * 80 : 50 + Math.random() * 30);
         }
         type();
     })();
