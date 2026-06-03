@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>404 - 页面未找到 | Tangent</title>
+    <!--noinspection CssUnusedSymbol-->
     <style>
         * {
             box-sizing: border-box;
@@ -348,7 +349,6 @@
                 const card = document.createElement('div');
                 card.className = 'card';
                 card.dataset.value = value;
-                card.dataset.index = index;
 
                 const cardFront = document.createElement('div');
                 cardFront.className = 'card-face card-front';
@@ -437,8 +437,7 @@
         }
 
         function getPerformanceRating(moves) {
-            const minMoves = currentDifficulty;
-            const rating = moves / minMoves;
+            const rating = moves / currentDifficulty;
             if (rating <= 1.2) return "🌟 完美记忆！你是记忆大师！";
             if (rating <= 1.5) return "👍 非常出色！接近完美了！";
             if (rating <= 2.0) return "👏 表现不错！继续努力！";
