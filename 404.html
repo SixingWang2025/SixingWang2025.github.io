@@ -161,12 +161,15 @@
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            margin: 12px 0;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
             font-weight: bold;
             text-decoration: none;
             display: inline-block;
+            appearance: none;
+            -webkit-appearance: none;
+            background: linear-gradient(to right, #3f51b5, #303f9f);
+            white-space: nowrap;
         }
 
         .btn:hover {
@@ -187,7 +190,8 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 15px;
+            align-items: center;
+            gap: 12px;
             margin: 12px 0;
             width: 100%;
             max-width: 500px;
@@ -233,14 +237,24 @@
             #game-container {
                 gap: 5px;
             }
+            .btn {
+                padding: clamp(4px, 1.5vw, 8px) clamp(12px, 3vw, 20px);
+                font-size: clamp(12px, 2.8vw, 15px);
+            }
             .action-buttons {
-                flex-direction: column;
-                align-items: center;
                 gap: 8px;
             }
             .difficulty-btn {
                 padding: 6px 12px;
                 font-size: 13px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 6px;
             }
         }
 
