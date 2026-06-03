@@ -437,11 +437,13 @@
         }
 
         function getPerformanceRating(moves) {
-            const rating = moves / currentDifficulty;
-            if (rating <= 1.2) return "🌟 完美记忆！你是记忆大师！";
-            if (rating <= 1.5) return "👍 非常出色！接近完美了！";
-            if (rating <= 2.0) return "👏 表现不错！继续努力！";
-            return "💪 再接再厉！多练习会更好！";
+            // 正常情况下需要先翻开看图案，再凭记忆匹配，不可能每张只点一次
+            const ratio = moves / currentDifficulty;
+            if (ratio <= 1.5) return "🌟 太厉害了！你是记忆大师！";
+            if (ratio <= 2.0) return "👏 非常出色！记忆力超群！";
+            if (ratio <= 2.5) return "👍 表现不错！继续加油！";
+            if (ratio <= 3.5) return "🙂 还可以哦！多练练会更好！";
+            return "💪 再接再厉！每次尝试都在进步！";
         }
 
         function setDifficulty(pairs) {
