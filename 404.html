@@ -160,6 +160,7 @@
         .btn {
             padding: clamp(6px, 1.5vw, 10px) clamp(18px, 4vw, 26px);
             font-size: clamp(14px, 3vw, 17px);
+            font-family: inherit;
             color: white;
             border: none;
             border-radius: 50px;
@@ -181,12 +182,8 @@
             transform: translateY(1px);
         }
 
-        .btn-primary {
-            background: linear-gradient(to right, #3f51b5, #303f9f);
-        }
-
         .btn-home {
-            background: linear-gradient(to right, #5c6bc0, #3949ab);
+            background: linear-gradient(to right, #3f51b5, #303f9f);
         }
 
         /* ---- 底部按钮区 ---- */
@@ -234,6 +231,9 @@
             .card-back {
                 font-size: clamp(20px, 8vw, 36px);
             }
+        }
+
+        @media (max-width: 400px) {
             #game-container {
                 gap: 5px;
             }
@@ -241,14 +241,6 @@
                 flex-direction: column;
                 align-items: center;
                 gap: 8px;
-            }
-        }
-
-        @media (max-width: 400px) {
-            #stats {
-                flex-direction: column;
-                gap: 8px;
-                align-items: center;
             }
             .difficulty-btn {
                 padding: 6px 12px;
@@ -294,7 +286,7 @@
 
     <!-- ====== 按钮 ====== -->
     <div class="action-buttons">
-        <button id="restart-btn" class="btn btn-primary">重新开始</button>
+        <button id="restart-btn" class="btn btn-home">重新开始</button>
         <a href="https://sixingwang2025.github.io/" class="btn btn-home">🏠 返回主页</a>
         <a href="https://sixingwang2025.github.io/blog/" class="btn btn-home">📝 访问博客</a>
     </div>
